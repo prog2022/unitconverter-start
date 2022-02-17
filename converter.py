@@ -19,6 +19,7 @@ class UnitConverter:
     def get_units(self, unittype: UnitType) -> List[Unit]:
         """Return all the units of the requested unittype.
         
+        :param unittype: the UnitType of the units to return.
         :returns: a list of Unit objects of requested UnitType.
         """
         filter_by_type = lambda unit: unit.unittype==unittype

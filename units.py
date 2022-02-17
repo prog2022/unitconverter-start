@@ -1,4 +1,3 @@
-"""A Unit contains info about a single unit."""
 from dataclasses import dataclass
 from unittype import UnitType
 
@@ -9,7 +8,7 @@ class Unit:
     value: float
     unittype: UnitType
 
-    """dataclass provides constructor, getter properties,
+    """dataclass provides a constructor, getter properties for attributes,
       __eq__ method, and others."""
 
     def __str__(self):
@@ -24,11 +23,9 @@ class Unit:
         return f"{classname}('{self.name}', {self.value}, UnitType.{self.unittype.name})"
 
 
-# For lack of a better place, define a units dictionary.
-# Keys: the unittype as a UnitType (enum) member
-# Values: an array of Unit objects for the given UnitType
+# For lack of a better place, define a list of all known units.
 
-units = {
+units = [
     # Length units
     Unit("Meter", 1.0, UnitType.LENGTH),
     Unit("Kilometer",  1000.0, UnitType.LENGTH),
@@ -45,12 +42,9 @@ units = {
     Unit("Sq.wa", 4.0, UnitType.AREA),
     Unit("Rai", 400.0, UnitType.AREA)
     # TODO need more Area units
-
-}
+]
 
 if __name__ == '__main__':
     print("Length units")
-   
-    for unit in units:
-        if unit.unittype == UnitType.LENGTH:
-            print(f"'{unit.name}' is ", repr(unit))
+    for unit in filter(lambda u: u.unittype==UnitType.LENGTH, units):
+        print(repr(unit))
